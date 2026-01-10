@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  runMultiplier: 5
   lookSpeedX: 2
   lookSpeedY: 2
   jumpForce: 1.8

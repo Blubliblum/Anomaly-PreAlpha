@@ -5,6 +5,7 @@ using UnityEngine;
 public class movec : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float runMultiplier = 2f;
     public float lookSpeedX = 2f;
     public float lookSpeedY = 2f;
 
@@ -31,7 +32,13 @@ public class movec : MonoBehaviour
         //Movimiento
         float moveX = Input.GetAxis("Horizontal"); 
         float moveZ = Input.GetAxis("Vertical");
+        float currentSpeed = moveSpeed;
 
+        //Correr
+        if (Input.GetKey(KeyCode.LeftShift) && moveZ > 0f)
+        {
+            currentSpeed *= runMultiplier;
+        }
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
 
         //Rotacion de la cam
@@ -59,6 +66,6 @@ public class movec : MonoBehaviour
         //Gravedad
         verticalVelocity += gravity * Time.deltaTime;
         move.y = verticalVelocity;
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
     }
 }
